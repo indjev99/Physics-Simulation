@@ -17,7 +17,7 @@ const long double BACKGROUND_COLOUR_G=1;
 const long double BACKGROUND_COLOUR_B=1;
 
 long double vertex_radius=0.015;
-long double thickness=0.005;
+long double thickness=0.0066;
 
 void drawPartEllipse(float x, float y, float radiusX, float radiusY, long double alpha, long double beta)
 {

@@ -13,7 +13,6 @@
 void input(graph& g)
 {
     int n,m,a,b;
-    double x,y;
     std::cin>>n>>m;
     g.reset(n);
     for (int i=0;i<n;++i)
@@ -48,12 +47,12 @@ void stats(graph& g)
 void run(GLFWwindow* w)
 {
     int c=1;
-    for (int i=-100;i<=100;i+=2)
+    for (int i=-90;i<=90;i+=10)
     {
-        std::cout<<-400<<" "<<i<<"\n";
+        std::cout<<i<<" "<<0<<"\n";
     }
     std::cout<<"\n";
-    for (int i=-100;i<=100;i+=2)
+    for (int i=-90;i<90;i+=10)
     {
         std::cout<<c<<" "<<c+1<<"\n";
         ++c;
@@ -68,8 +67,8 @@ void run(GLFWwindow* w)
     g.updates_per_sec=1000;
     g.EPS=0.01;
     g.spring_target=0;
-    g.spring_stiffness=1000;
-    g.electromagnetic_constant=0000;
+    g.spring_stiffness=10;
+    g.electromagnetic_constant=00000;
     g.resistance=0.0;
 
     int n=2;
@@ -104,7 +103,7 @@ void run(GLFWwindow* w)
         }
         if (!paused)
         {
-            for (int i=0;i<5;++i)
+            for (int i=0;i<15;++i)
                 g.update();
         }
         if (pressed==1)

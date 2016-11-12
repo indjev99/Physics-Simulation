@@ -33,8 +33,6 @@ void graph::update()
 {
     int n=vertices.size();
 
-    point acceleration;
-
     std::vector<point> v2(n);
 
     point p,p2;
@@ -48,7 +46,8 @@ void graph::update()
         {
             p2=vertices[edges[i][j]]-p;
             //if (p2.dist()>spring_target)
-                velocities[i]+=(p2-spring_target)*spring_stiffness/updates_per_sec;
+                if (i<2 || i>40) velocities[i]+=(p2-spring_target)*0.1*spring_stiffness/updates_per_sec;
+                else velocities[i]+=(p2-spring_target)*spring_stiffness/updates_per_sec;
         }
         for (int j=0;j<n;++j)
         {
@@ -62,11 +61,11 @@ void graph::update()
                 //std::cerr<<"Under EPS: "<<p2.dist()<<"\n";
             }
         }
-        velocities[i]+=point({100,0})/updates_per_sec;
-        if (i==0)
+        //velocities[i]+=point({0,-100})/updates_per_sec;
+        if (i==0 || i==vertices.size()-1)
         {
-            //velocities[i]={0,velocities[i].y};
-            velocities[i]={0,0};
+            velocities[i]={0,velocities[i].y};
+            //velocities[i]={0,0};
         }
         v2[i]=p+velocities[i]/updates_per_sec;
     }
